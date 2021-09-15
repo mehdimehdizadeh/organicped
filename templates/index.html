@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  
+        <!-- Top Bar Start -->
+        <div class="top-bar d-none d-md-block">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="top-bar-left">
+                     Organic PAD
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="top-bar-right">
+                            <div class="social">
+                                {% for admin in admins %}
+                                <a href="{{admin.twitter}}"><i class="fab fa-twitter"></i></a>
+                                <a href="{{admin.facebook}}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{admin.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{admin.instagran}}"><i class="fab fa-instagram"></i></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand"><small>ORGANICPAD</small></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="{% url 'index' %}" class="nav-item nav-link active">Ana səhifə</a>
+                        <a href="{% url 'about' %}" class="nav-item nav-link">Haqqımızda</a>
+                        {% for category in categories %}
+                        <a href="{% url 'article:category' category.id %}" class="nav-item nav-link">{{ category.category }}</a>
+                        {% endfor %}
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Əlaqə</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        <!-- Hero Start -->
+        <div class="hero">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                	<div class="col-sd-12">
+                        {% for admin in admins %}
+					<img src="{{ admin.logo.url }}" alt="OrganicPAD" style="width: 350px; height: 400px;">
+                    {% endfor %}
+				</div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!-- Class Start -->
+        <div class="class">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <h1><b> BİZİM MƏHSULLAR</b> </h1>
+                </div>
+                <div class="row class-container">
+                    {% for article in articles %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 class-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="class-wrap">
+                            <div class="class-img">
+                                <img src="{{ article.image.url }}" alt="Image">
+                            </div>
+                            <div class="class-text">
+                                <h2>{{article.title}}</h2>
+                                <div class="class-meta">
+                                    <p><i class="far fa-money-bill-alt"></i>{{ article.price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Class End -->
+
+       
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="footer-info">
+                    	
+                        <a href="index.html" class="footer-logo" style="font-size:45px;">ORGANICPAD</a>
+                
+                        <div class="footer-menu">
+                            {% for admin in admins %}
+                        <a href="https://wa.me/{{admin.whatsapp}}" target="_blank"><img src="{{ admin.whatsapp_image.url }}"></a>
+                        {% endfor %}
+                        </div>
+                        <div class="justify-content-center">
+                        	<br>
+                            <h1 style="color: #f7cac9;"> <b>Bizimlə əlaqə üçün! </b></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="container copyright">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; <a href="#">ORGANICPAD</a> -  All Right Reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Designed By <a href="https://www.linkedin.com/in/mehdi-mehdizad%C9%99-b3b1b5217/">Mehdi Mehdizadeh</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        {% endblock body %}
